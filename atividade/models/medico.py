@@ -2,7 +2,7 @@ from atividade.models.endereco import Endereco
 from atividade.models.funcionario import Funcionario
 
 class Medico(Funcionario):
-    def __init__(self, nome: str, telefone: str, email: str, crm, endereco: Endereco) -> None:
+    def __init__(self, nome: str, telefone: str, email: str, crm: str, endereco: Endereco) -> None:
         super().__init__(nome, telefone, email, endereco)
         self.crm = crm
 
