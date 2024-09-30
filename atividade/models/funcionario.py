@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from endereco import Endereco
+from atividade.models.endereco import Endereco
 
 class Funcionario(ABC, Endereco):
     
