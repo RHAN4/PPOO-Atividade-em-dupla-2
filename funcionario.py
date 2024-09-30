@@ -8,12 +8,12 @@ class Funcionario(ABC, Endereco):
         self.nome = nome
         self.telefone = telefone
         self.email = email
-        self.endereco = Endereco
+        self.endereco = endereco
 
     def __str__(self) -> str:
         return(
             f"\nNome: {self.nome}"
-            f"Telefone: {self.telefone}"
-            f"Eamil: {self.email}"
-            f"Endereco: {self.endereco}"
+            f"\nTelefone: {self.telefone}"
+            f"\nEmail: {self.email}"
+            f"\nEndereco: {self.endereco}"
         )    
