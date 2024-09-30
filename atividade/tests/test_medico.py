@@ -3,6 +3,7 @@ import pytest
 from atividade.models.endereco import Endereco
 from atividade.models.medico import Medico
 
+@pytest.fixture
 def validar_medico():
     Medico("Nome", "Telefone", "Email", "CRM", Endereco("Logradouro", "Numero", "Complemento", "CEP", "Cidade"))
 
