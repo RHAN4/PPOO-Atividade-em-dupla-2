@@ -1,0 +1,1 @@
+print("Oirr lindas mulheres, sonteiras??")
