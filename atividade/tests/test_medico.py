@@ -4,8 +4,8 @@ from atividade.models.medico import Medico
 
 @pytest.fixture
 def validar_medico():
-    Medico("Nome", "Telefone", "Email", "CRM", Endereco("Logradouro", "Numero", "Complemento", "CEP", "Cidade"))
-    return Medico
+    medico = Medico("Nome", "Telefone", "Email", "CRM", Endereco("Logradouro", "Numero", "Complemento", "CEP", "Cidade"))
+    return medico
 
 def test_validar_atributo_nome(validar_medico):
     assert validar_medico.nome == "Nome"
