@@ -4,7 +4,7 @@ from atividade.models.engenheiro import Engenheiro
 
 @pytest.fixture
 def pessoa_valida():
-    engenheiro = Engenheiro("Marcos", "7199999-9999", "marcos@gmail.com", "6666", 
+    engenheiro = Engenheiro("Marcos", "7199999-9999", "marcos@gmail.com", "6666", 10.000,
                             Endereco("Avenida J", "55", "Caminho K", "43806-200", "Salvador"))
     return engenheiro
 
@@ -20,6 +20,9 @@ def test_validar_email(pessoa_valida):
 def test_validar_crea(pessoa_valida):
     assert pessoa_valida.crea == "6666"
 
+def test_validar_salario(pessoa_valida):
+    assert pessoa_valida.salario == 10.000
+
 def test_validar_logradouro(pessoa_valida):
     assert pessoa_valida.endereco.logradouro == "Avenida J"
 
@@ -34,3 +37,18 @@ def test_validar_cep(pessoa_valida):
 
 def test_validar_cidade(pessoa_valida):
     assert pessoa_valida.endereco.cidade == "Salvador"
+
+def test_nome_vazio(pessoa_valida):
+    with pytest.raises(ValueError, match = "O nome não pode estar em branco"):
+        Engenheiro("", "7199999-9999", "marcos@gmail.com", "6666", 10.000,
+                            Endereco("Avenida J", "55", "Caminho K", "43806-200", "Salvador"))
+
+def test_telefone_invalido(pessoa_valida):
+   with pytest.raises(TypeError, match= "Digite apenas números."):
+        Engenheiro("Marcos", 7199999-9999, "marcos@gmail.com", "6666", 10.000,
+                            Endereco("Avenida J", "55", "Caminho K", "43806-200", "Salvador"))
+        
+def test_email_invalido(pessoa_valida):
+   with pytest.raises(TypeError, match= "Email não pode estar vazio."):
+        Engenheiro("Marcos", "7199999-9999", "", "6666", 10.000,
+                            Endereco("Avenida J", "55", "Caminho K", "43806-200", "Salvador"))
