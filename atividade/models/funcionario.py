@@ -8,12 +8,17 @@ class Funcionario(ABC, Endereco):
         self.nome = self._verificar_nome(nome)
         self.telefone = self._verificar_telefone(telefone)
         self.email = self._verificar_email(email)
-        self.salario = salario
+        self.salario = self._verificar_salario(salario)
         self.endereco = endereco
 
     @abstractmethod
     def salarioFinal() -> float:
         pass
+
+    def _verificar_salario(self, salario):
+         if not isinstance(salario,float):
+              raise TypeError("Salario deve ser numero")
+         return salario
 
     def _verificar_nome(self, nome):
             if not isinstance(nome, str) or not nome.strip():

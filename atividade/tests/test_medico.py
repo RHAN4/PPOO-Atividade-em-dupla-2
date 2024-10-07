@@ -68,3 +68,7 @@ def test_cep_invalido(validar_medico):
 def test_cidade_invalido(validar_medico):
    with pytest.raises(ValueError, match= "Cidade não pode estar vazio"):
         Medico("Nome", "Telefone", "Email", "CRM", 10.000, Endereco("Logradouro", "Numero", "Complemento", "CEP", ""))
+
+def test_salario_medico():
+    with pytest.raises(TypeError,match = "Salario deve ser numero"):
+        Medico("Nome", "Telefone", "Email", "CRM", "jkfgrekj", Endereco("Logradouro", "Numero", "Complemento", "CEP", "Cidade"))
