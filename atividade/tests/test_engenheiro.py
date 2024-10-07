@@ -38,6 +38,7 @@ def test_validar_cep(pessoa_valida):
 def test_validar_cidade(pessoa_valida):
     assert pessoa_valida.endereco.cidade == "Salvador"
 
+
 def test_nome_vazio(pessoa_valida):
     with pytest.raises(ValueError, match = "O nome não pode estar em branco"):
         Engenheiro("", "7199999-9999", "marcos@gmail.com", "6666", 10.000,
@@ -52,3 +53,30 @@ def test_email_invalido(pessoa_valida):
    with pytest.raises(TypeError, match= "Email não pode estar vazio."):
         Engenheiro("Marcos", "7199999-9999", "", "6666", 10.000,
                             Endereco("Avenida J", "55", "Caminho K", "43806-200", "Salvador"))
+        
+def test_logrdouro_invalido(pessoa_valida):
+    with pytest.raises(ValueError, match = "Logradouro não pode estar vazio"):
+        Engenheiro("Marcos", "7199999-9999", "marcos@gmail.com", "6666", 10.000,
+                            Endereco("", "55", "Caminho K", "43806-200", "Salvador"))
+        
+def test_numero_invalido(pessoa_valida):
+    with pytest.raises(ValueError, match = "Numero não pode estar vazio"):
+        Engenheiro("Marcos", "7199999-9999", "marcos@gmail.com", "6666", 10.000,
+                            Endereco("Avenida J", "", "Caminho K", "43806-200", "Salvador"))
+        
+def test_complemento_invalido(pessoa_valida):
+    with pytest.raises(ValueError, match = "Complemento não pode estar vazio"):
+        Engenheiro("Marcos", "7199999-9999", "marcos@gmail.com", "6666", 10.000,
+                            Endereco("Avenida J", "55", "", "43806-200", "Salvador"))
+        
+def test_cep_invalido(pessoa_valida):
+    with pytest.raises(ValueError, match = "CEP não pode estar vazio"):
+        Engenheiro("Marcos", "7199999-9999", "marcos@gmail.com", "6666", 10.000,
+                            Endereco("Avenida J", "55", "Caminho K", "", "Salvador"))
+        
+def test_cidade_invalido(pessoa_valida):
+    with pytest.raises(ValueError, match = "Cidade não pode estar vazio"):
+        Engenheiro("Marcos", "7199999-9999", "marcos@gmail.com", "6666", 10.000,
+                            Endereco("Avenida J", "55", "Caminho K", "43806-200", ""))
+
+        

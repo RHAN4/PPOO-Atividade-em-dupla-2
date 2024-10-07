@@ -48,3 +48,23 @@ def test_telefone_invalido(validar_medico):
 def test_email_invalido(validar_medico):
    with pytest.raises(TypeError, match= "Email não pode estar vazio."):
         Medico("Nome", "Telefone", "", "CRM", 10.000, Endereco("Logradouro", "Numero", "Complemento", "CEP", "Cidade"))
+
+def test_logradouro_invalidos(validar_medico):
+    with pytest.raises(ValueError, match= "Logradouro não pode estar vazio"):
+        Medico("Nome", "Telefone", "Email", "CRM", 10.000, Endereco("", "Numero", "Complemento", "CEP", "Cidade"))
+
+def test_numero_invalido(validar_medico):
+   with pytest.raises(ValueError, match= "Numero não pode estar vazio"):
+        Medico("Nome", "Telefone", "Email", "CRM", 10.000, Endereco("Logradouro", "", "Complemento", "CEP", "Cidade"))
+
+def test_complemento_invalido(validar_medico):
+   with pytest.raises(ValueError, match= "Complemento não pode estar vazio"):
+        Medico("Nome", "Telefone", "Email", "CRM", 10.000, Endereco("Logradouro", "Numero", "", "CEP", "Cidade"))
+
+def test_cep_invalido(validar_medico):
+   with pytest.raises(ValueError, match= "CEP não pode estar vazio"):
+        Medico("Nome", "Telefone", "Eamil", "CRM", 10.000, Endereco("Logradouro", "Numero", "Complemento", "", "Cidade"))
+
+def test_cidade_invalido(validar_medico):
+   with pytest.raises(ValueError, match= "Cidade não pode estar vazio"):
+        Medico("Nome", "Telefone", "Email", "CRM", 10.000, Endereco("Logradouro", "Numero", "Complemento", "CEP", ""))
